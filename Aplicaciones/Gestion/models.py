@@ -7,8 +7,9 @@ class Componente (models.Model):
     referencia= models.CharField(primary_key=True, max_length=45)
     nombre=models.CharField(max_length=200)
     marca=models.CharField(max_length=200)
+    
     def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        return self.pub_date >= datetime.timezone.now() - datetime.timedelta(days=1)
 
     def __str__(self):
         return self.referencia, self.nombre, self.marca
