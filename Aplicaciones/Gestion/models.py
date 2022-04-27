@@ -7,10 +7,18 @@ class Componente (models.Model):
     referencia= models.CharField(primary_key=True, max_length=45)
     nombre=models.CharField(max_length=200)
     marca=models.CharField(max_length=200)
+    def was_published_recently(self):
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+    def __str__(self):
+        return self.referencia, self.nombre, self.marca
 
 
 class Categoria (models.Model):
     nombre=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nombre
 
 class Producto (models.Model):
     referencia=models.CharField(primary_key=True, max_length=45)
@@ -19,6 +27,11 @@ class Producto (models.Model):
     descripcion=models.TextField()
     categoria=models.ForeignKey(Categoria,on_delete=models.CASCADE) 
     componentes=models.ManyToManyField(Componente)
+    
+
+    def __str__(self):
+        return self.referencia, self.precio,self.nombre,self.descripcion,self.categoria,self.componentes
+        
 
 class Cliente (models.Model):
     cif=models.CharField(primary_key=True, max_length=45)
@@ -27,6 +40,10 @@ class Cliente (models.Model):
     ciudad=models.CharField(max_length=200)
     telefono=models.IntegerField()
     correo=models.EmailField()
+
+    def __str__(self):
+        return self.cif, self.nombre, self.direccion, self.ciudad, self.telefono, self.correo
+
 
 class Pedido (models.Model):
     referencia=models.CharField(primary_key=True, max_length=45)
