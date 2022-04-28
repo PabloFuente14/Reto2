@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+# importamos todas las categorias que necesitamos hacer consulyas a la base de datos
 from .models import Categoria, Componente, Cliente, Pedido, Producto, LineaPedido 
 # Create your views here.
 
@@ -33,4 +34,32 @@ def borrarCategoria(request, id):
     categoria=Categoria.objects.get(id=id)
     categoria.delete()
     return redirect("/categorias")
+
+#COMPONENTES
     
+def componentes(request):
+    componentes=Componente.objects.all()
+    return render(request, 'componentes/gestion_componentes.html',{'componentes':componentes})
+
+def registrarComponente(request):
+    nombre= request.POST["nombre"]
+    if not Componente.objects.filter(nombre=nombre).exists():    
+       Componente.objects.create(nombre=nombre)
+    return redirect("/componentes")
+                        
+def ediccionComponente(request,id):
+    componente=Componente.objects.get(id=id)
+    return render(request,"componentes/ediccion_componente.html", {'componente':componente})
+
+def editarComponente(request):
+    id=request.POST["id"]
+    nombre= request.POST["nombre"]
+    componente= Componente.objects.get(id=id)
+    componente.nombre= nombre
+    componente.save()
+    return redirect("/componentes")
+
+def borrarComponente(resquest):
+    componente=Componente.objects.get(id=id)
+    componente.delete()
+    return redirect("/componentes")
