@@ -15,8 +15,14 @@ urlpatterns = [
     # COMPONENTES
     path('componentes', views.componentes), 
     path('registrarComponente/', views.registrarComponente),
-    path('ediccionComponente/<id>',views.ediccionComponente),
+    path('ediccionComponente/<referencia>',views.ediccionComponente),
     path('editarComponente/',views.editarComponente),
-    path('borrarComponente/<id>',views.borrarComponente),
+    path('borrarComponente/<referencia>',views.borrarComponente),
     
+    #PRODUCTOS
+    path('productos', views.productos), 
+    path('registrarProducto/', views.registrarProducto),
+    # path('ediccionProducto/<referencia>',views.ediccionProducto),
+    # path('editarProducto/',views.editarProducto),
+    # path('borrarProducto/<referencia>',views.borrarProducto),
 ]

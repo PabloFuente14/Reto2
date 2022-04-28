@@ -1,3 +1,4 @@
+from venv import create
 from django.shortcuts import redirect, render
 # importamos todas las categorias que necesitamos hacer consulyas a la base de datos
 from .models import Categoria, Componente, Cliente, Pedido, Producto, LineaPedido 
@@ -42,30 +43,53 @@ def componentes(request):
     return render(request, 'componentes/gestion_componentes.html',{'componentes':componentes})
 
 def registrarComponente(request):
-    nombre= request.POST["nombre"]
     referencia= request.POST["referencia"]
-    marca = request.POST["marca"]
-    if not Componente.objects.filter(nombre=nombre).exists():    
-       Componente.objects.create(nombre=nombre)
-    #if not Componente.objects.filter(referencia=referencia).exists():    
-    #   Componente.objects.create(referencia=referencia)
-    #if not Componente.objects.filter(marca=marca).exists():    
-    #   Componente.objects.create(marca=marca)
-    #return redirect("/componentes")
+    if not Componente.objects.filter(referencia=referencia).exists():  
+        nombre= request.POST["nombre"]
+        marca = request.POST["marca"]
+        Componente.objects.create(referencia=referencia, nombre=nombre, marca=marca)
+    return redirect("/componentes")
+   
                         
-def ediccionComponente(request,id):
-    componente=Componente.objects.get(id=id)
+def ediccionComponente(request,referencia):
+    componente=Componente.objects.get(referencia=referencia)
     return render(request,"componentes/ediccion_componente.html", {'componente':componente})
 
 def editarComponente(request):
-    id=request.POST["id"]
+    referencia=request.POST["referencia"]
     nombre= request.POST["nombre"]
-    componente= Componente.objects.get(id=id)
+    marca= request.POST["marca"]
+    componente= Componente.objects.get(referencia=referencia)
     componente.nombre= nombre
+    componente.marca= marca
     componente.save()
     return redirect("/componentes")
 
-def borrarComponente(resquest):
-    componente=Componente.objects.get(id=id)
+def borrarComponente(request, referencia):
+    componente=Componente.objects.get(referencia=referencia)
     componente.delete()
     return redirect("/componentes")
+
+def productos(request):
+    productos=Producto.objects.all()
+    categorias=Categoria.objects.all()
+    componentes=Componente.objects.all()
+    return render(request, 'productos/gestion_productos.html',{'productos':productos,'categorias':categorias,'componentes':componentes})
+
+def registrarProducto(request):
+    referencia= request.POST["referencia"]
+    if not Producto.objects.filter(referencia=referencia).exists(): 
+        nombre= request.POST["nombre"]
+        precio= request.POST["precio"]
+        descripcion= request.POST["descripcion"]  
+        id_categoria=request.POST["categorias"]
+        categoria= Categoria.objects.get(id=id_categoria)
+        referencias_componentes=request.POST.getlist("componentes")
+        producto=Producto.objects.create(referencia=referencia, nombre=nombre, precio=precio, descripcion=descripcion, categoria=categoria)
+        for referencia in referencias_componentes:
+            componente= Componente.objects.get(referencia=referencia)
+            producto.componentes.add(componente)
+    return redirect("/productos")
+        
+        
+        
