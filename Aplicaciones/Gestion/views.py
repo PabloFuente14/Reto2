@@ -42,10 +42,19 @@ def componentes(request):
     return render(request, 'componentes/gestion_componentes.html',{'componentes':componentes})
 
 def registrarComponente(request):
-    nombre= request.POST["nombre"]
-    if not Componente.objects.filter(nombre=nombre).exists():
-        Componente.objects.create(nombre=nombre)
-    return redirect("/componentes")                   
+    referencia= request.POST["referencia"]
+    Componente.objects.create(referencia=referencia)
+    return redirect("/componentes")  
+
+    # nombre= request.POST["nombre"]
+    # Componente.objects.create(nombre=nombre)
+    # return redirect("/componentes")   
+
+    # marca= request.POST["marca"]
+    # Componente.objects.create(nombre=nombre)
+    # return redirect("/categorias")
+
+                
 def ediccionComponente(request,id):
     componente=Componente.objects.get(id=id)
     return render(request,"componentes/ediccion_componente.html", {'componente':componente})
@@ -58,7 +67,7 @@ def editarComponente(request):
     componente.save()
     return redirect("/componentes")
 
-def borrarComponente(resquest):
+def borrarComponente(request):
     componente=Componente.objects.get(id=id)
     componente.delete()
     return redirect("/componentes")
