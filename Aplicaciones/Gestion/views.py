@@ -70,6 +70,7 @@ def borrarComponente(request, referencia):
     componente.delete()
     return redirect("/componentes")
 
+# PRODUCTOS
 def productos(request):
     productos=Producto.objects.all()
     categorias=Categoria.objects.all()
@@ -90,6 +91,13 @@ def registrarProducto(request):
             componente= Componente.objects.get(referencia=referencia)
             producto.componentes.add(componente)
     return redirect("/productos")
-        
+
+def ediccionProducto(request,referencia):
+    producto=Producto.objects.get(referencia=referencia)
+    categorias=Categoria.objects.all()
+    componentes=Componente.objects.all()
+    return render(request,"productos/ediccion_producto.html", {'producto':producto,'categorias':categorias,'componentes':componentes })
+    
+     
         
         
