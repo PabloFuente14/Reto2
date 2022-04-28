@@ -38,9 +38,9 @@
          </div>
 
      </div>
-     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8" >
+      <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8" >
          <div class="table-responsive py-2">
-             <h1>Listado de componentes</h1>
+             <h1>Listado de clientes</h1>
              <table class="table table-striped">
                  <thead>
                      <tr>
@@ -53,11 +53,11 @@
                  <tbody>
                      {% for co in componentes  %}
                      <tr>
-                        <td > {{ co.referencia}}</td>
+                        {% comment %} <td > {{ co.referencia}}</td>
                         <td> {{ co.nombre }}</td>
                         <td> {{ co.marca }}</td>
                         <td><a href="ediccionComponente/{{co.referencia}}" class="btn btn-info">Editar</a></td>
-                        <td><a href="borrarComponente/{{co.referencia}}" class="btn btn-danger">Borrar</a></td>
+                        <td><a href="borrarComponente/{{co.referencia}}" class="btn btn-danger">Borrar</a></td> {% endcomment %}
                      </tr>
                      {% endfor %}
                  </tbody>

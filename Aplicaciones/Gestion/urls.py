@@ -28,7 +28,7 @@ urlpatterns = [
     
       # Clientes
      path('clientes', views.clientes), 
-    # path('registrarComponente/', views.registrarComponente),
+     path('registrarCliente/', views.registrarCliente),
     # path('ediccionComponente/<referencia>',views.ediccionComponente),
     # path('editarComponente/',views.editarComponente),
     # path('borrarComponente/<referencia>',views.borrarComponente),
