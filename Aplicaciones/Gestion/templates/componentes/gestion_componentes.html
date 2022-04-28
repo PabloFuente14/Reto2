@@ -7,7 +7,13 @@
          <div class="card">
             <form action="/registrarComponente/" method="POST">{% csrf_token %}
                 <div class="input-group">
+                    <input type="text" id="referencia" name="referencia" class="form-control" placeholder="Referencia del componente" required>
+                </div> <br>
+                <div class="input-group">
                     <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre del componente" required>
+                </div> <br>
+                <div class="input-group">
+                    <input type="text" id="marca" name="marca" class="form-control" placeholder="Marca del componente" required>
                 </div> <br>
                 <div class="input-group" >
                     <button type="submit" class="btn btn-success btn-block text-white">
@@ -25,14 +31,18 @@
              <table class="table table-striped">
                  <thead>
                      <tr>
-                         <th>nombre</th>
-                         <th colspan="2">opciones</th>
+                         <th>Referencia</th>
+                         <th>Nombre</th>
+                         <th>Marca</th>
+                         <th  colspan="2" char="center" >     Opciones</th>
                      </tr>
                  </thead>
                  <tbody>
                      {% for co in componentes  %}
                      <tr>
+                        <td > {{ co.referencia}}</td>
                         <td> {{ co.nombre }}</td>
+                        <td> {{ co.marca }}</td>
                         <td><a href="ediccionComponente/{{co.id}}" class="btn btn-info">Editar</a></td>
                         <td><a href="borrarComponente/{{co.id}}" class="btn btn-danger">Borrar</a></td>
                      </tr>
