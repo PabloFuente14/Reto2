@@ -43,9 +43,15 @@ def componentes(request):
 
 def registrarComponente(request):
     nombre= request.POST["nombre"]
+    referencia= request.POST["referencia"]
+    marca = request.POST["marca"]
     if not Componente.objects.filter(nombre=nombre).exists():    
        Componente.objects.create(nombre=nombre)
-    return redirect("/componentes")
+    #if not Componente.objects.filter(referencia=referencia).exists():    
+    #   Componente.objects.create(referencia=referencia)
+    #if not Componente.objects.filter(marca=marca).exists():    
+    #   Componente.objects.create(marca=marca)
+    #return redirect("/componentes")
                         
 def ediccionComponente(request,id):
     componente=Componente.objects.get(id=id)
