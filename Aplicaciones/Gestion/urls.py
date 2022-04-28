@@ -22,8 +22,17 @@ urlpatterns = [
     #PRODUCTOS
     path('productos', views.productos), 
     path('registrarProducto/', views.registrarProducto),
-    path('ediccionProducto/<referencia>',views.ediccionProducto),
-    path('editarProducto/',views.editarProducto),
-    path('borrarProducto/<referencia>',views.borrarProducto),
+    # path('ediccionProducto/<referencia>',views.ediccionProducto),
+    # path('editarProducto/',views.editarProducto),
+    # path('borrarProducto/<referencia>',views.borrarProducto),
+    
+      # Clientes
+     path('clientes', views.clientes), 
+    # path('registrarComponente/', views.registrarComponente),
+    # path('ediccionComponente/<referencia>',views.ediccionComponente),
+    # path('editarComponente/',views.editarComponente),
+    # path('borrarComponente/<referencia>',views.borrarComponente),
+    
+    
     
 ]

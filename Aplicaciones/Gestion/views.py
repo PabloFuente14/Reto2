@@ -92,12 +92,19 @@ def registrarProducto(request):
             producto.componentes.add(componente)
     return redirect("/productos")
 
-def ediccionProducto(request,referencia):
-    producto=Producto.objects.get(referencia=referencia)
-    categorias=Categoria.objects.all()
-    componentes=Componente.objects.all()
-    return render(request,"productos/ediccion_producto.html", {'producto':producto,'categorias':categorias,'componentes':componentes })
+# def ediccionProducto(request,referencia):
+#     producto=Producto.objects.get(referencia=referencia)
+#     categorias=Categoria.objects.all()
+#     componentes=Componente.objects.all()
+#     # return render(request,"productos/ediccion_producto.html", {'producto':producto,'categorias':categorias,'componentes':componentes })
     
+    
+    #CLIENTES 
+def clientes(request):
+    clientes=Cliente.objects.all()
+    return render(request, 'clientes/clientes_gestion.html',{'clientes':clientes})
+
+
      
         
         
