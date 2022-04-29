@@ -121,14 +121,16 @@ def clientes(request):
     return render(request, 'clientes/gestion_clientes.html', {'clientes': clientes})
 
 
-def registarCliente(request):
-    cif = Cliente.POST["cif"]
-    if not Cliente.objects.filter(cif=cif).exists:
-        nombre = Cliente.POST["nombre"]
-        direccion = Cliente.POST["direccion"]
-        cuidad = Cliente.POST["cuidad"]
-        telefono = Cliente.POST["telefono"]
-        correo = Cliente.POST["correo"]
+def registrarCliente(request):
+
+    cif = request.POST["cif"]
+    if not Cliente.objects.filter(cif=cif).exists():
+        nombre = request.POST["nombre"]
+        direccion = request.POST["direccion"]
+        ciudad = request.POST["cuidad"]
+        telefono = request.POST["telefono"]
+        #correo = request.POST["correo"] ///añadir correo=correo
         Cliente.objects.create(cif=cif, nombre=nombre, direccion=direccion,
-                               cuidad=cuidad, telefono=telefono, correo=correo)
+                               ciudad=ciudad, telefono=telefono)
     return redirect("/clientes")
+

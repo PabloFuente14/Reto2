@@ -16,17 +16,14 @@
                     <input type="text" id="direcion" name="direccion" class="form-control" placeholder="Direccion del cliente" required>
                 </div> <br>
                 <div class="input-group">
-                    <input type="text" id="ciudad" name="cuidad" class="form-control" placeholder="Direccion del cliente" required>
-                </div> <br>
-                <div class="input-group">
-                    <input type="text" id="direcion" name="direccion" class="form-control" placeholder="Direccion del cliente" required>
+                    <input type="text" id="ciudad" name="ciudad" class="form-control" placeholder="Cuidad del cliente" required>
                 </div> <br>
                 <div class="input-group">
                     <input type="number" id="telefono" name="telefono" class="form-control" placeholder=" Telefono del cliente" required>
                 </div> <br>
-                <div class="input-group">
+                {% comment %} <div class="input-group">
                     <input type="email" id="email" name="email" class="form-control" placeholder=" email del cliente" required>
-                </div> <br>
+                </div> <br> {% endcomment %}
 
                 <div class="input-group" >
                     <button type="submit" class="btn btn-success btn-block text-white">
@@ -44,20 +41,27 @@
              <table class="table table-striped">
                  <thead>
                      <tr>
-                         <th>Referencia</th>
+                         <th>Cif</th>
                          <th>Nombre</th>
-                         <th>Marca</th>
+                         <th>Direccion</th>
+                         <th>ciudad</th>
+                         <th>Telefono</th>
+                         {% comment %} <th>Correo</th> {% endcomment %}
                          <th  colspan="2" char="center" >Opciones</th>
                      </tr>
                  </thead>
                  <tbody>
-                     {% for co in componentes  %}
+                     {% for cl in clientes  %}
                      <tr>
-                        {% comment %} <td > {{ co.referencia}}</td>
-                        <td> {{ co.nombre }}</td>
-                        <td> {{ co.marca }}</td>
-                        <td><a href="ediccionComponente/{{co.referencia}}" class="btn btn-info">Editar</a></td>
-                        <td><a href="borrarComponente/{{co.referencia}}" class="btn btn-danger">Borrar</a></td> {% endcomment %}
+                        <td> {{ cl.cif }}</td>
+                        <td> {{ cl.nombre }}</td>
+                        <td> {{ cl.direccion }}</td>
+                        <td> {{ cl.ciudad }}</td>
+                        <td> {{ cl.telefono }}</td>
+                        {% comment %} <td> {{ cl.correo }}</td> {% endcomment %}
+                        <td><a href="ediccionCliente/{{cl.cif}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="borrarCliente/{{cl.cif}}" class="btn btn-danger">Borrar</a></td>
+                       
                      </tr>
                      {% endfor %}
                  </tbody>
