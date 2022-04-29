@@ -1,61 +1,72 @@
 {% extends '../base.html' %}
-{% block title %}Edición de producto{% endblock title %}
+{% block title %}
+    Edición de producto
+{% endblock title %}
 {% block content %}
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <h1>Edición de producto</h1>
-        <div class="card">
-            <form action="/editarProducto/" method="POST">{% csrf_token %}
-                <div class="input-group">
-                    <input type="text" id="referencia" name="referencia" class="form-control" value="{{producto.referencia}}" readonly required>
-                </div> <br>
-                <div class="input-group">
-                    <input type="text" id="nombre" name="nombre" class="form-control" value="{{producto.nombre}}"  placeholder="Nombre del producto" required>
-                </div> <br>
-                <textarea name="descripcion" id="descripcion" placeholder="Descripcion del producto" rows="5" cols="50">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h1>Edición de producto</h1>
+            <div class="card">
+                <form action="/editarProducto/" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text"
+                               id="referencia"
+                               name="referencia"
+                               class="form-control"
+                               value="{{ producto.referencia }}"
+                               readonly
+                               required>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <input type="text"
+                               id="nombre"
+                               name="nombre"
+                               class="form-control"
+                               value="{{ producto.nombre }}"
+                               placeholder="Nombre del producto"
+                               required>
+                    </div>
+                    <br>
+                    <textarea name="descripcion" id="descripcion" placeholder="Descripcion del producto" rows="5" cols="50">
                     {{producto.descripcion}}
-                </textarea> <br>
-
-                <div class="input-group" >
-                    
-                    <label for="">Elige una categoria</label> <br>
-                       <select name="categorias" id="categorias">
-                           
-                           {% for c in categorias  %}
-                             {% if  c.id==producto.categoria.id %}
-                             <option selected value="{{c.id}}">
-                                {{c.nombre}}
-                            </option>
-                            {% else %}
-                            <option value="{{c.id}}">
-                                {{c.nombre}}
-                            </option>
-
-                             {% endif %}
-                           <option value="{{c.id}}">
-                               {{c.nombre}}
-                           </option>
-                           {% endfor %} 
-                       </select>
-                   </div>
-                   {% for ci in componentes %}
-                   <div class="form-check">
-                       <input class="form-check-input" name="componentes" type="checkbox" value="{{ci.referencia}}" id="{{ci.referencia}}">
-                       <label class="form-check-label" for="flexCheckDefault">
-                         {{ci.nombre}}
-                       </label>
-                   </div>
-                   {% endfor %}
-                   
-
-                <div class="input-group" >
-                    <button type="submit" class="btn btn-success btn-block text-white">
-                      Aplicar cambios
-                    </button>
-                </div>
-            </form>
+                    </textarea>
+                    <br>
+                    <div class="input-group">
+                        <label for="">Elige una categoria</label>
+                        <br>
+                        <select name="categorias" id="categorias">
+                            {% for c in categorias  %}
+                                {% if c.id == producto.categoria.id %}
+                                    <option selected value="{{ c.id }}">
+                                        {{ c.nombre }}
+                                    </option>
+                                {% else %}
+                                    <option value="{{ c.id }}">
+                                        {{ c.nombre }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% for ctupla in componentes_formato_tupla %}
+                        <div class="form-check">
+                            <input class="form-check-input"
+                                name="componentes"
+                                type="checkbox"
+                                value="{{ ctupla.0.referencia }}"
+                                id="{{ ctupla.0.referencia }}"
+                                {% if ctupla.1 %} checked {% endif %}
+                            >
+                            <label class="form-check-label" for="flexCheckDefault">{{ ctupla.0.nombre }}</label>
+                        </div>                       
+                    {% endfor %}
+                    <div class="input-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Aplicar cambios</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
 {% endblock content %}

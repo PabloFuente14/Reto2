@@ -9,14 +9,14 @@ class Componente (models.Model):
     marca=models.CharField(max_length=200)
 
     def __str__(self):
-        return self.referencia, self.nombre, self.marca
+        return f"referencia: {self.referencia}, nombre: {self.nombre}, marca: {self.marca}"
 
 
 class Categoria (models.Model):
     nombre=models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return f"nombre: {self.nombre}"
 
 class Producto (models.Model):
     referencia=models.CharField(primary_key=True, max_length=45)
@@ -28,7 +28,7 @@ class Producto (models.Model):
     
 
     def __str__(self):
-        return self.referencia, self.precio,self.nombre,self.descripcion,self.categoria,self.componentes
+        return f" referencia: {self.referencia}, precio: {self.precio}, nombre: {self.nombre}, descripcion: {self.descripcion}, categoria: {self.categoria}, componentes: {self.componentes}"
         
 
 class Cliente (models.Model):

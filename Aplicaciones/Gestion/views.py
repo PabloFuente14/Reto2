@@ -1,3 +1,4 @@
+from math import prod
 from venv import create
 from django.shortcuts import redirect, render
 # importamos todas las categorias que necesitamos hacer consulyas a la base de datos
@@ -107,19 +108,29 @@ def registrarProducto(request):
             producto.componentes.add(componente)
     return redirect("/productos")
 
-# def ediccionProducto(request,referencia):
-#     producto=Producto.objects.get(referencia=referencia)
-#     categorias=Categoria.objects.all()
-#     componentes=Componente.objects.all()
-#     # return render(request,"productos/ediccion_producto.html", {'producto':producto,'categorias':categorias,'componentes':componentes })
 
-
-
-
-
+def ediccionProducto(request, referencia):
+    producto = Producto.objects.get(referencia=referencia)
+    categorias = Categoria.objects.all()
+    componentes = Componente.objects.all()
+    
+    componentes_calculados = []
+    
+    for comp in componentes:
+        componente_es_usado_en_producto = False
+        for pcomp in producto.componentes.all():
+            if pcomp.referencia == comp.referencia:
+                componente_es_usado_en_producto = True
+        
+        tupla = (comp, componente_es_usado_en_producto) # Esta tupla tiene en el indice 0 el componente y en el indice 1 un booleano que indica si el compoente pertence al producto
+        componentes_calculados.append(tupla)    
+    
+    print(componentes_calculados)
+    return render(request,"productos/ediccion_producto.html", {'producto':producto,'categorias':categorias,'componentes_formato_tupla':componentes_calculados })
 
     # CLIENTES
-    
+
+
 def clientes(request):
     clientes = Cliente.objects.all()
     return render(request, 'clientes/gestion_clientes.html', {'clientes': clientes})
@@ -133,20 +144,19 @@ def registrarCliente(request):
         direccion = request.POST["direccion"]
         ciudad = request.POST["ciudad"]
         telefono = request.POST["telefono"]
-        correo = request.POST["correo"] 
+        correo = request.POST["correo"]
         Cliente.objects.create(cif=cif, nombre=nombre, direccion=direccion,
-                               ciudad=ciudad, telefono=telefono, correo= correo)
+                               ciudad=ciudad, telefono=telefono, correo=correo)
     return redirect("/clientes")
 
 
-
 def ediccionCliente(request, cif):
-    cliente= Cliente.objects.get(cif=cif)
+    cliente = Cliente.objects.get(cif=cif)
     return render(request, "clientes/ediccion_clientes.html", {'cliente': cliente})
 
 
 def editarCliente(request):
-    cif= request.POST["cif"]
+    cif = request.POST["cif"]
     nombre = request.POST["nombre"]
     direccion = request.POST["direccion"]
     ciudad = request.POST["ciudad"]
@@ -160,6 +170,7 @@ def editarCliente(request):
     cliente.correo = correo
     cliente.save()
     return redirect("/clientes")
+
 
 def borrarCliente(request, cif):
     cliente = Cliente.objects.get(cif=cif)

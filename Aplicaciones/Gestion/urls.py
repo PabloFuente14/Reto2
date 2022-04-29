@@ -22,7 +22,7 @@ urlpatterns = [
     # PRODUCTOS
     path('productos', views.productos),
     path('registrarProducto/', views.registrarProducto),
-    # path('ediccionProducto/<referencia>',views.ediccionProducto),
+    path('ediccionProducto/<referencia>',views.ediccionProducto),
     # path('editarProducto/',views.editarProducto),
     # path('borrarProducto/<referencia>',views.borrarProducto),
 
