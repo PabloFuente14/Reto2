@@ -21,9 +21,9 @@
                 <div class="input-group">
                     <input type="number" id="telefono" name="telefono" class="form-control" placeholder=" Telefono del cliente" required>
                 </div> <br>
-                {% comment %} <div class="input-group">
+                <div class="input-group">
                     <input type="email" id="correo" name="correo" class="form-control" placeholder=" email del cliente" required>
-                </div> <br> {% endcomment %}
+                </div> <br> 
 
                 <div class="input-group" >
                     <button type="submit" class="btn btn-success btn-block text-white">
@@ -46,7 +46,7 @@
                          <th>Direccion</th>
                          <th>ciudad</th>
                          <th>Telefono</th>
-                         {% comment %} <th>Correo</th> {% endcomment %}
+                         <th>Correo</th> 
                          <th  colspan="2" char="center" >Opciones</th>
                      </tr>
                  </thead>
@@ -58,7 +58,7 @@
                         <td> {{ cl.direccion }}</td>
                         <td> {{ cl.ciudad }}</td>
                         <td> {{ cl.telefono }}</td>
-                        {% comment %} <td> {{ cl.correo }}</td> {% endcomment %}
+                        <td> {{ cl.correo }}</td> 
                         <td><a href="ediccionCliente/{{cl.cif}}" class="btn btn-info">Editar</a></td>
                         <td><a href="borrarCliente/{{cl.cif}}" class="btn btn-danger">Borrar</a></td>
                        

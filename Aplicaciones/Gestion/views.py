@@ -133,9 +133,9 @@ def registrarCliente(request):
         direccion = request.POST["direccion"]
         ciudad = request.POST["ciudad"]
         telefono = request.POST["telefono"]
-        #correo = request.POST["correo"] ///añadir correo=correo
+        correo = request.POST["correo"] 
         Cliente.objects.create(cif=cif, nombre=nombre, direccion=direccion,
-                               ciudad=ciudad, telefono=telefono)
+                               ciudad=ciudad, telefono=telefono, correo= correo)
     return redirect("/clientes")
 
 
@@ -151,13 +151,13 @@ def editarCliente(request):
     direccion = request.POST["direccion"]
     ciudad = request.POST["ciudad"]
     telefono = request.POST["telefono"]
-    # correo = request.POST["correo"]
+    correo = request.POST["correo"]
     cliente = Cliente.objects.get(cif=cif)
     cliente.nombre = nombre
     cliente.direccion = direccion
     cliente.ciudad = ciudad
     cliente.telefono = telefono
-    # cliente.correo = correo
+    cliente.correo = correo
     cliente.save()
     return redirect("/clientes")
 
