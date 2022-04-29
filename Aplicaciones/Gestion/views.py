@@ -149,13 +149,13 @@ def editarCliente(request):
     cif= request.POST["cif"]
     nombre = request.POST["nombre"]
     direccion = request.POST["direccion"]
-    cuidad = request.POST["cuidad"]
+    ciudad = request.POST["ciudad"]
     telefono = request.POST["telefono"]
     # correo = request.POST["correo"]
     cliente = Cliente.objects.get(cif=cif)
     cliente.nombre = nombre
     cliente.direccion = direccion
-    cliente.cuidad = cuidad
+    cliente.ciudad = ciudad
     cliente.telefono = telefono
     # cliente.correo = correo
     cliente.save()

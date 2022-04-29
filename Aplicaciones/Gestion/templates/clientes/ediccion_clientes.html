@@ -6,7 +6,7 @@
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <h1>Edición de cliente</h1>
         <div class="card">
-            <form action="/editarClientes/" method="POST">{% csrf_token %}
+            <form action="/editarCliente/" method="POST">{% csrf_token %}
                 <div class="input-group">
                     <input type="text" id="cif" name="cif" class="form-control" value="{{cliente.cif}}" readonly required>
                 </div> <br>
