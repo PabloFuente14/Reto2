@@ -146,7 +146,7 @@ def ediccionCliente(request, cif):
 
 
 def editarCliente(request):
-    cif = request.POST["cif"]
+    cif= request.POST["cif"]
     nombre = request.POST["nombre"]
     direccion = request.POST["direccion"]
     cuidad = request.POST["cuidad"]
@@ -158,7 +158,6 @@ def editarCliente(request):
     cliente.cuidad = cuidad
     cliente.telefono = telefono
     # cliente.correo = correo
-        
     cliente.save()
     return redirect("/clientes")
 
