@@ -113,9 +113,13 @@ def registrarProducto(request):
 #     componentes=Componente.objects.all()
 #     # return render(request,"productos/ediccion_producto.html", {'producto':producto,'categorias':categorias,'componentes':componentes })
 
+
+
+
+
+
     # CLIENTES
-
-
+    
 def clientes(request):
     clientes = Cliente.objects.all()
     return render(request, 'clientes/gestion_clientes.html', {'clientes': clientes})
@@ -127,10 +131,38 @@ def registrarCliente(request):
     if not Cliente.objects.filter(cif=cif).exists():
         nombre = request.POST["nombre"]
         direccion = request.POST["direccion"]
-        ciudad = request.POST["cuidad"]
+        ciudad = request.POST["ciudad"]
         telefono = request.POST["telefono"]
         #correo = request.POST["correo"] ///añadir correo=correo
         Cliente.objects.create(cif=cif, nombre=nombre, direccion=direccion,
                                ciudad=ciudad, telefono=telefono)
     return redirect("/clientes")
 
+
+
+def ediccionCliente(request, cif):
+    cliente= Cliente.objects.get(cif=cif)
+    return render(request, "clientes/ediccion_clientes.html", {'cliente': cliente})
+
+
+def editarCliente(request):
+    cif = request.POST["cif"]
+    nombre = request.POST["nombre"]
+    direccion = request.POST["direccion"]
+    cuidad = request.POST["cuidad"]
+    telefono = request.POST["telefono"]
+    # correo = request.POST["correo"]
+    cliente = Cliente.objects.get(cif=cif)
+    cliente.nombre = nombre
+    cliente.direccion = direccion
+    cliente.cuidad = cuidad
+    cliente.telefono = telefono
+    # cliente.correo = correo
+        
+    cliente.save()
+    return redirect("/clientes")
+
+def borrarCliente(request, cif):
+    cliente = Cliente.objects.get(cif=cif)
+    cliente.delete()
+    return redirect("/clientes")
