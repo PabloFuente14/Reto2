@@ -23,8 +23,8 @@ urlpatterns = [
     path('productos', views.productos),
     path('registrarProducto/', views.registrarProducto),
     path('ediccionProducto/<referencia>',views.ediccionProducto),
-    # path('editarProducto/',views.editarProducto),
-    # path('borrarProducto/<referencia>',views.borrarProducto),
+    path('editarProducto/',views.editarProducto),
+    path('borrarProducto/<referencia>',views.borrarProducto),
 
     # Clientes
     path('clientes', views.clientes),
@@ -33,6 +33,10 @@ urlpatterns = [
     path('editarCliente/',views.editarCliente),
     path('borrarCliente/<cif>',views.borrarCliente),
 
-
-
+    #PEDIDOS
+    path('pedidos', views.pedidos),
+    path('registrarPedido/', views.registrarPedido),
+    path('ediccionPedido/<referencia>', views.ediccionPedido),
+    #path('editarPedido/',views.editarPedido),
+    path('nuevoPedido/', views.nuevoPedido),
 ]

@@ -1,0 +1,63 @@
+{% extends '../base.html' %}
+{% block title %}Editar pedido{% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="card">
+            <form action="/editarPedido/" method="POST">{% csrf_token %}
+                <div class="input-group">
+                    <input type="text" id="referencia" value="{{pedido.referencia}}" readonly name="referencia" class="form-control" placeholder="Referencia del pedido" required>
+                </div> <br>
+                <div class="input-group">
+                    <input type="date" id="fecha" name="fecha" value="{{pedido.fecha}}" class="form-control" placeholder="Fecha del pedido" required>
+                </div> <br>
+                <div class="input-group">
+                    <label for="">Elige un cliente</label>
+                    <br>
+                    <select name="clientes" id="clientes">
+                        {% for cli in clientes  %}
+                            {% if cli.cif == pedido.cliente.cif %}
+                                <option selected value="{{ cli.cif }}">
+                                    {{ cli.nombre }}
+                                </option>
+                            {% else %}
+                                <option value="{{ cli.cif }}">
+                                    {{ cli.nombre }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="">Elige un producto</label>
+                    <br>
+                    <select name="productos" id="productos">
+                        {% for pro in productos  %}
+                            {% if pro.referencia == linea_pedido.producto.referencia %}
+                                <option selected value="{{ pro.referencia }}">
+                                    {{ pro.nombre }}
+                                </option>
+                            {% else %}
+                                <option value="{{ pro.referencia }}">
+                                    {{ pro.nombre }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                   <div class="input-group">
+                    <input type="number" value="{{linea_pedido.cantidad}}" id="cantidad" name="cantidad" class="form-control" placeholder="Cantidad del producto" required>
+                </div> <br>
+                <div class="input-group" >
+                    <button type="submit" class="btn btn-success btn-block text-white">
+                        Guardar pedido
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+{%extends '../base.html' %}
+{% block title %}Pedidos{% endblock title %}
+{% block content %}
+
+<div class="row">
+     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" >
+        <a href="nuevoPedido/" class="btn btn-primary">Añadir pedido</a>
+         <div class="table-responsive py-2">
+             <h1>Listado de pedidos</h1>
+             <table class="table table-striped">
+                 <thead>
+                     <tr>
+                         <th>Referencia</th>
+                         <th>Cliente</th>
+                         <th>Fecha</th>
+                         <th>Precio total</th>
+                         <th char="center" >Opciones</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     {% for ped in pedidos  %}
+                     <tr>
+                        <td > {{ ped.referencia}}</td>
+                        <td> {{ ped.cliente.cif }} | {{ped.cliente.nombre}}</td>
+                        <td> {{ ped.fecha }}</td>
+                        <td> {{ ped.precio }}</td>
+                        <td><a href="ediccionPedido/{{ped.referencia}}" class="btn btn-info">Editar</a></td>
+                     </tr>
+                     {% endfor %}
+                 </tbody>
+             </table>
+
+         </div>
+
+
+     </div>
+
+
+
+</div>
+
+{%endblock content%}
