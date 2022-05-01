@@ -1,6 +1,7 @@
-body{background-color: rgba(188, 241, 210, 0.989);}
+body{background-color: #f3f3f3;}
 
 h1 {
+    font-weight: 500;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
     font-size: 40px;
     padding: 40px 25px;
@@ -8,12 +9,12 @@ h1 {
     text-align: center;
     text-transform: uppercase;
     text-rendering: optimizeLegibility;
-    color: #202020;
-    background-color: #688a5d;
+    /* color: #202020; */
+    background-color: #c7c2c2;
     letter-spacing: .1em;
     text-shadow: 
       -1px -1px 1px #111, 
-      2px 2px 1px #363636;}
+      2px 2px 1px #f9f6f6;}
 
 
 h2 {
@@ -27,10 +28,8 @@ h2 {
     color: #202020;
     background-color: #688a5d;
     letter-spacing: .1em;
-    text-shadow: 
-    -1px -1px 1px #111, 
-    2px 2px 1px #363636;}
-
+    }
+    
 #navbarNav{
     justify-content: center;  
     font-weight: bold;
@@ -43,12 +42,23 @@ h2 {
 }
 
 #texto{
-    color: #202020;
-    background-color: #688a5d;
+    text-align:center;
+    font-weight: 600;
+    background-color:#c7c2c2;
     font-size: 15px;
     padding: 40px 25px;
     border-radius: 20px;
     justify-content: center;
+}
+#texto2{
+    text-align:center;
+    font-size: xx-large;
+    padding: 40px 25px;
+    border-radius: 20px;
+    justify-content: center;
+    fill: #35322a;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: oblique;
 }
 
 textarea {
