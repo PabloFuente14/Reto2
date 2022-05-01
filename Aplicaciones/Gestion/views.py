@@ -242,5 +242,32 @@ def ediccionPedido(request, referencia):
     print(linea_pedido)
     return render(request, "pedidos/ediccion_pedido.html", {'pedido': pedido, 'clientes':clientes, 'productos':productos, 'linea_pedido':linea_pedido})
 
+def editarPedido(request):
+    id_pedido = request.POST["referencia"]
+    fecha = request.POST["fecha"]
+    cliente_cif = request.POST["cliente"]
+    producto_referencia = request.POST["productos"]
+    cantidad = request.POST["cantidad"]
 
-
+    pedido = Pedido.objects.get(referencia = id_pedido)
+    pedido.fecha = fecha
+    pedido.cliente = Cliente.objects.get(cif=cliente_cif)
+    
+    producto = Producto.objects.get(referencia=producto_referencia)
+    
+    # de momento asumimos que habra una sola linea de pedido y solo una
+    lp = pedido.lineapedido_set.all()[0]
+    
+    lp.cantidad = cantidad
+    lp.producto = producto
+    
+    lp.save()
+    pedido.save()
+    return redirect("/pedidos")
+    
+    
+  
+    
+    
+    
+  

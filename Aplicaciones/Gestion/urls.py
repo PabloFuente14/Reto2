@@ -35,8 +35,8 @@ urlpatterns = [
 
     #PEDIDOS
     path('pedidos', views.pedidos),
+    path('nuevoPedido/', views.nuevoPedido),
     path('registrarPedido/', views.registrarPedido),
     path('ediccionPedido/<referencia>', views.ediccionPedido),
-    #path('editarPedido/',views.editarPedido),
-    path('nuevoPedido/', views.nuevoPedido),
+    path('editarPedido/',views.editarPedido),
 ]

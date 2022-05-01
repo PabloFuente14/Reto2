@@ -40,7 +40,8 @@ class Cliente (models.Model):
     correo=models.EmailField()
 
     def __str__(self):
-        return self.cif, self.nombre, self.direccion, self.ciudad, self.telefono, self.correo
+        return self.cif
+        #return self.cif, self.nombre, self.direccion, self.ciudad, self.telefono, self.correo
 
 
 class Pedido (models.Model):

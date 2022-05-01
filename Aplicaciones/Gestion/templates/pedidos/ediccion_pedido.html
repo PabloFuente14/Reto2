@@ -9,12 +9,13 @@
                     <input type="text" id="referencia" value="{{pedido.referencia}}" readonly name="referencia" class="form-control" placeholder="Referencia del pedido" required>
                 </div> <br>
                 <div class="input-group">
-                    <input type="date" id="fecha" name="fecha" value="{{pedido.fecha}}" class="form-control" placeholder="Fecha del pedido" required>
+                    {{ pedido.fecha|date:"SHORT_DATE_FORMAT" }}
+                    <input type="date" id="fecha" name="fecha" value="{{ pedido.fecha }}" class="form-control" placeholder="Fecha del pedido" required>
                 </div> <br>
                 <div class="input-group">
                     <label for="">Elige un cliente</label>
                     <br>
-                    <select name="clientes" id="clientes">
+                    <select name="cliente" id="cliente">
                         {% for cli in clientes  %}
                             {% if cli.cif == pedido.cliente.cif %}
                                 <option selected value="{{ cli.cif }}">
@@ -28,6 +29,7 @@
                         {% endfor %}
                     </select>
                 </div>
+               
                 <div class="input-group">
                     <label for="">Elige un producto</label>
                     <br>
