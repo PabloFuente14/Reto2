@@ -1,0 +1,76 @@
+body{background-color: rgba(188, 241, 210, 0.989);}
+
+h1 {
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 40px;
+    padding: 40px 25px;
+    border-radius: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+    color: #202020;
+    background-color: #688a5d;
+    letter-spacing: .1em;
+    text-shadow: 
+      -1px -1px 1px #111, 
+      2px 2px 1px #363636;}
+
+
+h2 {
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 20px;
+    padding: 10px 5px;
+    border-radius: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+    color: #202020;
+    background-color: #688a5d;
+    letter-spacing: .1em;
+    text-shadow: 
+    -1px -1px 1px #111, 
+    2px 2px 1px #363636;}
+
+#navbarNav{
+    justify-content: center;  
+    font-weight: bold;
+}
+
+#barra{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 15px;
+}
+
+#texto{
+    color: #202020;
+    background-color: #688a5d;
+    font-size: 15px;
+    padding: 40px 25px;
+    border-radius: 20px;
+    justify-content: center;
+}
+
+textarea {
+    background-color: transparent;
+    border: 1px solid #000000;
+    max-width: 100%;
+}
+
+
+.footer  {
+    background: grey;
+    text-align: center;
+    margin-top: 4rem;
+    position:relative;
+    padding: 25px;
+    bottom: 0;
+    width: 100%;
+    font-size: 15px;
+    }
+
+    #item:hover{
+        font-size: 18px;
+        background-color:#688a5d;
+        border-radius: 3px;
+    }

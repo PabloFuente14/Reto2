@@ -8,17 +8,17 @@
             <form action="/registrarProducto/" method="POST">{% csrf_token %}
                 <div class="input-group">
                     <input type="text" id="referencia" name="referencia" class="form-control" placeholder="Referencia del componente" required>
-                </div> <br>
+                </div> <br><br>
                 <div class="input-group">
                     <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre del componente" required>
-                </div> <br>
+                </div> <br><br>
                 <div class="input-group">
                     <input type="number" id="precio" name="precio" class="form-control" placeholder="Precio del componente" required>
-                </div> <br>
-                <textarea name="descripcion" id="descripcion" placeholder="Descripcion del producto" rows="5" cols="50">
-                </textarea>   
+                </div> <br><br>
+                <textarea name="descripcion" id="descripcion" placeholder="Precio del componente" rows="5" cols="50">
+                </textarea><br><br>
                 <div class="input-group" >
-                 <label for="">Elige una categoria</label> <br>
+                 <label for="">Elige una categoria</label> <br><br>
                     <select name="categorias" id="categorias">
                         <option selected>
                             -----
@@ -38,7 +38,6 @@
                     </label>
                 </div>
                 {% endfor %}
-                
                 <div class="input-group" >
                     <button type="submit" class="btn btn-success btn-block text-white">
                         Guardar
@@ -51,7 +50,7 @@
      </div>
      <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8" >
          <div class="table-responsive py-2">
-             <h1>Listado de productos</h1>
+             <h2>Listado de productos</h2>
              <table class="table table-striped">
                  <thead>
                      <tr>

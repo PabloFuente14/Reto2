@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-ude&c59n5jm)aq*cho-bl-(rv+xrm!d449vt^etmexp8x-^j#l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+STATICFIELS_DIRS=['Reto2/Aplicaciones/Gestion/static']
+
 ALLOWED_HOSTS = []
 
 
