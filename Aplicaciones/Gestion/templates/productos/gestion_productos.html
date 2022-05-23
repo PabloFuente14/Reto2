@@ -51,6 +51,13 @@
      <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8" >
          <div class="table-responsive py-2">
              <h2>Listado de productos</h2>
+
+             <form action="/productos" method="POST">
+                 {% csrf_token %}
+                 <input type="text" name="texto_busqueda" value="{{ texto_consulta }}" placeholder="Introduce tu busqueda...">
+                 <input type="submit" value="Consultar">
+             </form>
+
              <table class="table table-striped">
                  <thead>
                      <tr>
@@ -79,9 +86,44 @@
                  </tbody>
              </table>
 
+             <p> Total de paginas: {{ num_paginas }} </p>
+             <p> Pagina: {{ pagina_actual }} </p>
+             <p> Mostrando: {{ cantidad_por_pagina }} elementos por pagina </p>
+
+             
+
          </div>
 
-
+         <div class="justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    {% if productos.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">Primera</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ productos.previous_page_number }}"><</a>
+                        </li>
+                    {% endif %}
+        
+                    {% for num_pagina in num_paginas %}
+                        <li class="page-item{% if pagina_actual == num_pagina %} active{% endif %}">
+                            <a class="page-link" href="?page={{ num_pagina }}">{{ num_pagina }}</a>
+                        </li>
+                    {% endfor %}
+        
+                    {% if productos.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ productos.next_page_number }}">></a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ productos.paginator.num_pages }}">Última</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        
+        </div>
      </div>
 
 

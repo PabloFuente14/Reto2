@@ -1,5 +1,7 @@
 from math import prod
 from venv import create
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import redirect, render
 # importamos todas las categorias que necesitamos hacer consulyas a la base de datos
 from .models import Categoria, Componente, Cliente, Pedido, Producto, LineaPedido
@@ -86,10 +88,34 @@ def borrarComponente(request, referencia):
 
 
 def productos(request):
-    productos = Producto.objects.all()
+    productos = None
+    texto_busqueda = request.POST.get("texto_busqueda", "")
+    if texto_busqueda:
+        productos =  Producto.objects.filter(
+            Q(nombre__icontains=texto_busqueda) | 
+            Q(descripcion__icontains=texto_busqueda)
+        )
+    else:
+        productos = Producto.objects.all()
+        
+    cantidad_por_pagina = 5
+    paginator = Paginator(productos, cantidad_por_pagina) # E3 - Paginador de productos, con 5 de maximo
+    pagina = request.GET.get("page", 1) # Obtenemos el número de página que queremos
+    productos = paginator.get_page(pagina) # Obtenemos los productos de esa pagina
+    pagina_actual = int(pagina) # Página actual
+    paginas = range(1, productos.paginator.num_pages + 1) # Total de páginas
+    
     categorias = Categoria.objects.all()
     componentes = Componente.objects.all()
-    return render(request, 'productos/gestion_productos.html', {'productos': productos, 'categorias': categorias, 'componentes': componentes})
+    return render(request, 'productos/gestion_productos.html', {
+        'productos': productos,
+        'categorias': categorias,
+        'componentes': componentes,
+        'texto_consulta': texto_busqueda,
+        'cantidad_por_pagina': cantidad_por_pagina,
+        'pagina_actual': pagina_actual,
+        'num_paginas': paginas
+    })
 
 
 def registrarProducto(request):
