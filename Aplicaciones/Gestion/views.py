@@ -174,10 +174,13 @@ def editarProducto(request):
     categoria = Categoria.objects.get(id=id_categoria)
     referencias_componentes = request.POST.getlist("componentes")
     producto = Producto.objects.get(referencia=referencia)
+    imagen = request.FILES.get('imagen') # Añadido entrega3, type imagen-->guarda la imagen
     producto.nombre = nombre
     producto.precio = precio
     producto.descripcion = descripcion
     producto.categoria = categoria
+    if imagen:
+        producto.imagen = imagen
     for componente in producto.componentes.all():
         producto.componentes.remove(componente)
     for referencia in referencias_componentes:

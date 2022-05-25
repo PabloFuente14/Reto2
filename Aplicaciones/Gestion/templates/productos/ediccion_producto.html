@@ -71,6 +71,20 @@
                             <label class="form-check-label" for="flexCheckDefault">{{ ctupla.0.nombre }}</label>
                         </div>                       
                     {% endfor %}
+                    
+                    {% comment %} # Añadido entrega3, type imagen-->guarda la imagen {% endcomment %}
+                    <div class="input-group">
+                        {% if producto.imagen %}
+                            <img src="{{ producto.imagen.url }}" width="200" height="100">
+                        {% endif %}    
+                    </div>  
+                    <br>
+                    <div class="input-group">
+                        <input type="file" id="imagen" name="imagen" class="form-control">
+
+                    </div>
+                    <br>
+
                     <div class="input-group">
                         <button type="submit" class="btn btn-success btn-block text-white">Aplicar cambios</button>
                     </div>

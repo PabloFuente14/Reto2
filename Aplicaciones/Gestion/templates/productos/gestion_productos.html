@@ -5,8 +5,8 @@
 <div class="row">
      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
          <div class="card">
-            {% comment %} enctype="multipar/from-data"> es necesario para el tipe imagen  {% endcomment %}
-            <form action="/registrarProducto/" method="POST"  enctype="multipar/from-data">{% csrf_token %}
+            {% comment %} enctype="multipart/from-data"> es necesario para el tipe imagen  {% endcomment %}
+            <form action="/registrarProducto/" method="POST"  enctype="multipart/form-data">{% csrf_token %}
                 <div class="input-group">
                     <input type="text" id="referencia" name="referencia" class="form-control" placeholder="Referencia del componente" required>
                 </div> <br><br>
@@ -43,7 +43,7 @@
                 <br>
                 {% comment %} Añadido entrega3, type imagen-->guarda la imagen  {% endcomment %}
                 <div class="input-group">
-                    <input type="file" id="imagen" name="imagen" class="form control">
+                    <input type="file" id="imagen" name="imagen" class="form-control">
                 </div>
                 <br>
                 <br>
@@ -76,6 +76,7 @@
                          <th>Precio</th>
                          <th>Categoria</th>
                          <th>Componentes</th>
+                         <th>Imagenes</th>
                          <th  colspan="2" char="center" >Opciones</th>
                      </tr>
                  </thead>
@@ -89,6 +90,12 @@
                         <td> <ul> {% for comp in pro.componentes.all %}
                                <li>{{comp.nombre}}</li> 
                              {% endfor %}</ul></td>
+                        <td>
+                            {% if pro.imagen %}
+                                <img src="{{ pro.imagen.url }}" alt="imagen del producto" width="50" height="50">
+                                <a href="{{ pro.imagen.url }}" download="producto.jpg"> DESCARGAR </a>
+                            {% endif%}
+                        </td>     
                         <td><a href="ediccionProducto/{{pro.referencia}}" class="btn btn-info">Editar</a></td>
                         <td><a href="borrarProducto/{{pro.referencia}}" class="btn btn-danger">Borrar</a></td>
                      </tr>
