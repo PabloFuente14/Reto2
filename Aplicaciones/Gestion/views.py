@@ -119,7 +119,7 @@ def productos(request):
         'categorias': categorias,
         'componentes': componentes,
         'texto_consulta': texto_busqueda,
-        'cantidad_por_pagina': cantidad_por_pagina,
+        'cantidad_por_pagina': cantidad_por_pagina, 
         'pagina_actual': pagina_actual,
         'num_paginas': paginas
     })

@@ -3,115 +3,123 @@
 {% block content %}
 
 <div class="row">
-     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-         <div class="card">
-            {% comment %} enctype="multipart/from-data"> es necesario para el tipe imagen  {% endcomment %}
-            <form action="/registrarProducto/" method="POST"  enctype="multipart/form-data">{% csrf_token %}
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card">
+            {% comment %} enctype="multipart/from-data"> es necesario para el tipe imagen {% endcomment %}
+            <form action="/registrarProducto/" method="POST" enctype="multipart/form-data">{% csrf_token %}
                 <div class="input-group">
-                    <input type="text" id="referencia" name="referencia" class="form-control" placeholder="Referencia del componente" required>
+                    <input type="text" id="referencia" name="referencia" class="form-control"
+                        placeholder="Referencia del componente" required>
                 </div> <br><br>
                 <div class="input-group">
-                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre del componente" required>
+                    <input type="text" id="nombre" name="nombre" class="form-control"
+                        placeholder="Nombre del componente" required>
                 </div> <br><br>
                 <div class="input-group">
-                    <input type="number" id="precio" name="precio" class="form-control" placeholder="Precio del componente" required>
+                    <input type="number" id="precio" name="precio" class="form-control"
+                        placeholder="Precio del componente" required>
                 </div> <br><br>
                 <textarea name="descripcion" id="descripcion" placeholder="Precio del componente" rows="5" cols="50">
                 </textarea><br><br>
-                <div class="input-group" >
-                 <label for="">Elige una categoria</label> <br><br>
+                <div class="input-group">
+                    <label for="">Elige una categoria</label> <br><br>
                     <select name="categorias" id="categorias">
                         <option selected>
                             -----
                         </option>
-                        {% for c in categorias  %}
+                        {% for c in categorias %}
                         <option value="{{c.id}}">
                             {{c.nombre}}
                         </option>
-                        {% endfor %} 
+                        {% endfor %}
                     </select>
                 </div>
                 {% for ci in componentes %}
                 <div class="form-check">
-                    <input class="form-check-input" name="componentes" type="checkbox" value="{{ci.referencia}}" id="{{ci.referencia}}">
+                    <input class="form-check-input" name="componentes" type="checkbox" value="{{ci.referencia}}"
+                        id="{{ci.referencia}}">
                     <label class="form-check-label" for="flexCheckDefault">
-                      {{ci.nombre}}
+                        {{ci.nombre}}
                     </label>
                 </div>
                 {% endfor %}
                 <br>
                 <br>
-                {% comment %} Añadido entrega3, type imagen-->guarda la imagen  {% endcomment %}
+                {% comment %} Añadido entrega3, type imagen-->guarda la imagen {% endcomment %}
                 <div class="input-group">
                     <input type="file" id="imagen" name="imagen" class="form-control">
                 </div>
                 <br>
                 <br>
-            
-                <div class="input-group" >
+
+                <div class="input-group">
                     <button type="submit" class="btn btn-success btn-block text-white">
                         Guardar
                     </button>
                 </div>
             </form>
 
-         </div>
+        </div>
 
-     </div>
-     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8" >
-         <div class="table-responsive py-2">
-             <h2>Listado de productos</h2>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive py-2">
+            <h2>Listado de productos</h2>
 
-             <form action="/productos" method="POST">
-                 {% csrf_token %}
-                 <input type="text" name="texto_busqueda" value="{{ texto_consulta }}" placeholder="Introduce tu busqueda...">
-                 <input type="submit" value="Consultar">
-             </form>
+            <form action="/productos" method="POST">
+                {% csrf_token %}
+                <input type="text" name="texto_busqueda" value="{{ texto_consulta }}"
+                    placeholder="Introduce tu busqueda...">
+                <input type="submit" value="Consultar">
+            </form>
 
-             <table class="table table-striped">
-                 <thead>
-                     <tr>
-                         <th>Referencia</th>
-                         <th>Nombre</th>
-                         <th>Precio</th>
-                         <th>Categoria</th>
-                         <th>Componentes</th>
-                         <th>Imagenes</th>
-                         <th  colspan="2" char="center" >Opciones</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     {% for pro in productos  %}
-                     <tr>
-                        <td > {{ pro.referencia}}</td>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Referencia</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Categoria</th>
+                        <th>Componentes</th>
+                        <th>Imagenes</th>
+                        <th colspan="2" char="center">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pro in productos %}
+                    <tr>
+                        <td> {{ pro.referencia}}</td>
                         <td> {{ pro.nombre }}</td>
                         <td> {{ pro.precio }}</td>
                         <td> {{ pro.categoria.nombre }}</td>
-                        <td> <ul> {% for comp in pro.componentes.all %}
-                               <li>{{comp.nombre}}</li> 
-                             {% endfor %}</ul></td>
+                        <td>
+                            <ul> {% for comp in pro.componentes.all %}
+                                <li>{{comp.nombre}}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
                         <td>
                             {% if pro.imagen %}
-                                <img src="{{ pro.imagen.url }}" alt="imagen del producto" width="50" height="50">
-                                <a href="{{ pro.imagen.url }}" download="producto.jpg"> DESCARGAR </a>
+                            <img src="{{ pro.imagen.url }}" alt="imagen del producto" width="50" height="50">
+                            <a href="{{ pro.imagen.url }}" download="producto.jpg"> <small>DESCARGAR</small> </a>
                             {% endif%}
-                        </td>     
+                        </td>
                         <td><a href="ediccionProducto/{{pro.referencia}}" class="btn btn-info">Editar</a></td>
                         <td><a href="borrarProducto/{{pro.referencia}}" class="btn btn-danger">Borrar</a></td>
-                     </tr>
-                     {% endfor %}
-                 </tbody>
-             </table>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-             <p> Total de paginas: {{ num_paginas }} </p>
-             <p> Pagina: {{ pagina_actual }} </p>
-             <p> Mostrando: {{ cantidad_por_pagina }} elementos por pagina </p>
+            <!-- <p> Total de paginas: {{ num_paginas }} -->
+            <!-- <p> Pagina: {{ pagina_actual }} </p> --> 
+            <p> Mostrando: {{ cantidad_por_pagina }} elementos por pagina </p>
 
-             
 
-         </div>
 
-         <div class="justify-content-center">
+        </div>
+
+        <div class="justify-content-center">
             <nav>
                 <ul class="pagination">
                     {% if productos.has_previous %}
@@ -119,19 +127,20 @@
                             <a class="page-link" href="?page=1">Primera</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ productos.previous_page_number }}"><</a>
+                            <a class="page-link" href="?page={{ productos.previous_page_number }}"><<</a>
+                                
                         </li>
                     {% endif %}
-        
+
                     {% for num_pagina in num_paginas %}
                         <li class="page-item{% if pagina_actual == num_pagina %} active{% endif %}">
                             <a class="page-link" href="?page={{ num_pagina }}">{{ num_pagina }}</a>
                         </li>
                     {% endfor %}
-        
+
                     {% if productos.has_next %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ productos.next_page_number }}">></a>
+                            <a class="page-link" href="?page={{ productos.next_page_number }}">>></a>
                         </li>
                         <li class="page-item">
                             <a class="page-link" href="?page={{ productos.paginator.num_pages }}">Última</a>
@@ -139,9 +148,9 @@
                     {% endif %}
                 </ul>
             </nav>
-        
+
         </div>
-     </div>
+    </div>
 
 
 
