@@ -5,7 +5,8 @@
 <div class="row">
      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
          <div class="card">
-            <form action="/registrarProducto/" method="POST">{% csrf_token %}
+            {% comment %} enctype="multipar/from-data"> es necesario para el tipe imagen  {% endcomment %}
+            <form action="/registrarProducto/" method="POST"  enctype="multipar/from-data">{% csrf_token %}
                 <div class="input-group">
                     <input type="text" id="referencia" name="referencia" class="form-control" placeholder="Referencia del componente" required>
                 </div> <br><br>
@@ -38,6 +39,15 @@
                     </label>
                 </div>
                 {% endfor %}
+                <br>
+                <br>
+                {% comment %} Añadido entrega3, type imagen-->guarda la imagen  {% endcomment %}
+                <div class="input-group">
+                    <input type="file" id="imagen" name="imagen" class="form control">
+                </div>
+                <br>
+                <br>
+            
                 <div class="input-group" >
                     <button type="submit" class="btn btn-success btn-block text-white">
                         Guardar

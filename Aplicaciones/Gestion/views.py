@@ -1,4 +1,5 @@
 from math import prod
+from tkinter import image_names
 from venv import create
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -134,8 +135,9 @@ def registrarProducto(request):
         id_categoria = request.POST["categorias"]
         categoria = Categoria.objects.get(id=id_categoria)
         referencias_componentes = request.POST.getlist("componentes")
+        imagen=request.FILES.GET('imagen')   # Añadido entrega3, type imagen-->guarda la imagen
         producto = Producto.objects.create(
-            referencia=referencia, nombre=nombre, precio=precio, descripcion=descripcion, categoria=categoria)
+            referencia=referencia, nombre=nombre, precio=precio, descripcion=descripcion, categoria=categoria, imagen=imagen)
         for referencia in referencias_componentes:
             componente = Componente.objects.get(referencia=referencia)
             producto.componentes.add(componente)

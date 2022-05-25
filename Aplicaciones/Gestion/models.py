@@ -1,4 +1,5 @@
 import datetime
+from distutils.command.upload import upload
 from django.db import models
 
 # Create your models here.
@@ -25,8 +26,9 @@ class Producto (models.Model):
     descripcion=models.TextField()
     categoria=models.ForeignKey(Categoria,on_delete=models.CASCADE) 
     componentes=models.ManyToManyField(Componente)
+    # Añadido entrega3, type imagen-->guarda la imagen
+    imagen=models.ImageField(upload_to='productos',null=True)
     
-
     def __str__(self):
         return f" referencia: {self.referencia}, precio: {self.precio}, nombre: {self.nombre}, descripcion: {self.descripcion}, categoria: {self.categoria}, componentes: {self.componentes}"
         
