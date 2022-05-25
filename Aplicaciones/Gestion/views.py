@@ -94,12 +94,11 @@ def productos(request):
     if texto_busqueda:
         productos = Producto.objects.filter(
             Q(nombre__icontains=texto_busqueda) |
-            Q(descripcion__icontains=texto_busqueda) |
             Q(referencia__icontains=texto_busqueda) |
             Q(precio__icontains=texto_busqueda) |
             Q(categoria__nombre__icontains=texto_busqueda)|
             Q(componentes__nombre__icontains = texto_busqueda) 
-        )
+        ).distinct()
     else:
         productos = Producto.objects.all()
 
