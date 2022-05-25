@@ -135,7 +135,7 @@ def registrarProducto(request):
         id_categoria = request.POST["categorias"]
         categoria = Categoria.objects.get(id=id_categoria)
         referencias_componentes = request.POST.getlist("componentes")
-        imagen=request.FILES.GET('imagen')   # Añadido entrega3, type imagen-->guarda la imagen
+        imagen=request.FILES.get('imagen')   # Añadido entrega3, type imagen-->guarda la imagen
         producto = Producto.objects.create(
             referencia=referencia, nombre=nombre, precio=precio, descripcion=descripcion, categoria=categoria, imagen=imagen)
         for referencia in referencias_componentes:
