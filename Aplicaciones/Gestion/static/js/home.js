@@ -1,19 +1,22 @@
 // definimo las clases de css  que son tamaño
-var clases = ["f0", "f1", "f2", "f3", "f4"];
+var clases = ["t0" ,  "t1"  , "t2" , "t3" , "t4"];
 
 // definimos en que posicion vamos a empezar
 var inicioClase = 2;
 
 //funcion del boton de aumentar
-document.getElementById('aumentar').addEventListener('click', function () {
-    let clasePrevia = inicioClase; // inicia con la clase =2
+let aumento = document.getElementById('aumentar');
+aumento.addEventListener('click', aumentar);
+function aumentar() {
+    let clasePrevia = inicioClase; // inici)a con la clase =2
     inicioClase++; // aumentamos la posicion al inicioClase= 3
     inicioClase = (inicioClase == clases.length) ? clases.length - 1 : inicioClase; //le resto uno si esta en la ultima pos. del array
     cambiarClases(clasePrevia, inicioClase);
-});
+}
 
 //funcion del boton de disminuir
 document.getElementById('disminuir').addEventListener('click', function () {
+
     let clasePrevia = inicioClase; // inicia con la clase =2
     inicioClase--; // restamos la posicion al inicioClase= 1
     inicioClase = (inicioClase < 0) ? 0 : inicioClase; //si es cero se queda en cero
@@ -28,3 +31,4 @@ function cambiarClases(previa, siguiente) {
         elemento.classList.add(clases[siguiente]);//añadimos la clases siguiente
     }
 }
+
