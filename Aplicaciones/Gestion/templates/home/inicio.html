@@ -1,21 +1,33 @@
 {% extends '../base.html' %}
+{% load static %}
 {% block title %}
 Inicio
 {% endblock title %}
 {% block content %}
+<button id="aumentar">Aumentar pag.</button>
+<button id="disminuir">Disminuir pag.</button>
 <h1 id="titulo" py-2> Deustronic Components.SL.</h1><br>
 <span>
     <p id="texto">
-        La empresa Deustronic Components.SL ha sido diseñada para la resolucion de problemas derivados del uso de tablas exel. <br><br>
-        En empresa Deustronic Components.SL facilitamos las labores de busquedas, inserciones, modificados e incluso borrados en BD <br><br>
-        Esta página Web fue creada para sacrle el máximo partido a la getión de productos. Haciendo un uso correcto los veneficios para tu empresa serán inmediatos.<br><br>
-      
+        La empresa Deustronic Components.SL ha sido diseñada para la resolucion de problemas derivados del uso de tablas
+        exel. <br><br>
+        En empresa Deustronic Components.SL facilitamos las labores de busquedas, inserciones, modificados e incluso
+        borrados en BD <br><br>
+        Esta página Web fue creada para sacrle el máximo partido a la getión de productos. Haciendo un uso correcto los
+        veneficios para tu empresa serán inmediatos.<br><br>
+
     </p>
     <br>
     <p id="texto2">
-        La construcción de un negocio es saber hacer algo para enorgullecerse, es crear algo que va a hacer una diferencia real en la vida de otras personas - Richard Bronson
+        La construcción de un negocio es saber hacer algo para enorgullecerse, es crear algo que va a hacer una
+        diferencia real en la vida de otras personas - Richard Bronson
     </p>
 </span><br>
 
 
-    {% endblock content %}
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock js %}
+
