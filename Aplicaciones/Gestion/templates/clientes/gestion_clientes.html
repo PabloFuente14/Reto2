@@ -1,4 +1,5 @@
 {%extends '../base.html' %}
+{% load static %}
 {% block title %}Clientes{% endblock title %}
 {% block content %}
 
@@ -16,13 +17,24 @@
                     <input type="text" id="direcion" name="direccion" class="form-control" placeholder="Direccion del cliente" required>
                 </div> <br>
                 <div class="input-group">
+                    <input type="number" id="cp" name="cp" class="form-control" placeholder="CP del cliente" required>
+                </div> <br>
+                <div class="input-group">
                     <input type="text" id="ciudad" name="ciudad" class="form-control" placeholder="Cuidad del cliente" required>
+                </div> <br>
+                <div class="input-group">
+                    <input type="text" id="provincia" name="provincia" class="form-control" placeholder="Provincia del cliente" required readonly>
                 </div> <br>
                 <div class="input-group">
                     <input type="tel" minlength="9" maxlength="9" id="telefono" name="telefono" class="form-control" placeholder=" Telefono del cliente" required>
                 </div> <br>
                 <div class="input-group">
                     <input type="email" id="correo" name="correo" class="form-control" placeholder=" email del cliente" required>
+                </div> <br> 
+                <div class="input-group">
+                    <ul id="errores">
+                        
+                    </ul>
                 </div> <br> 
 
                 <div class="input-group" >
@@ -44,7 +56,9 @@
                          <th>Cif</th>
                          <th>Nombre</th>
                          <th>Direccion</th>
+                         <th>CP</th>
                          <th>ciudad</th>
+                         <th>Provincia</th>
                          <th>Telefono</th>
                          <th>Correo</th> 
                          <th  colspan="2" char="center" >Opciones</th>
@@ -56,7 +70,9 @@
                         <td> {{ cl.cif }}</td>
                         <td> {{ cl.nombre }}</td>
                         <td> {{ cl.direccion }}</td>
+                        <td> {{ cl.cp }}</td>
                         <td> {{ cl.ciudad }}</td>
+                        <td> {{ cl.provincia }}</td>
                         <td> {{ cl.telefono }}</td>
                         <td> {{ cl.correo }}</td> 
                         <td><a href="ediccionCliente/{{cl.cif}}" class="btn btn-info">Editar</a></td>
@@ -72,3 +88,10 @@
 </div>
 
 {%endblock content%}
+
+
+{% block js %}
+
+<script src="{% static 'js/clientes.js' %}"></script>
+
+{% endblock js %}
