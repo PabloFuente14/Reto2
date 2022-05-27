@@ -121,7 +121,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
+EMAI_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST="smtp-mail.outlook.com"
+EMAIL_USE_TLS=True
+EMAIL_PORT=587
+EMAIL_HOST_USER= "deustronic@hotmail.com"
+EMAIL_HOST_PASSWORD= "deusto1234"
 
 
 # Añadido entrega3, type imagen-->guarda la imagen

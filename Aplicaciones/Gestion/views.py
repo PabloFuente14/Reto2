@@ -1,8 +1,11 @@
 from math import prod
 from tkinter import image_names
 from venv import create
+from django.conf import settings
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 # importamos todas las categorias que necesitamos hacer consulyas a la base de datos
 from .models import Categoria, Componente, Cliente, Pedido, Producto, LineaPedido
@@ -194,8 +197,7 @@ def borrarProducto(request, referencia):
     producto.delete()
     return redirect("/productos")
 
-    # CLIENTES
-
+     # CLIENTES
 
 def clientes(request):
     clientes = Cliente.objects.all()
@@ -208,12 +210,21 @@ def registrarCliente(request):
     if not Cliente.objects.filter(cif=cif).exists():
         nombre = request.POST["nombre"]
         direccion = request.POST["direccion"]
+        cp = request.POST["cp"]
         ciudad = request.POST["ciudad"]
+        provincia = request.POST["provincia"] 
         telefono = request.POST["telefono"]
         correo = request.POST["correo"]
-        Cliente.objects.create(cif=cif, nombre=nombre, direccion=direccion,
-                               ciudad=ciudad, telefono=telefono, correo=correo)
-    return redirect("/clientes")
+        Cliente.objects.create(cif=cif, nombre=nombre, direccion=direccion, cp=cp,
+                               ciudad=ciudad, provincia=provincia,telefono=telefono, correo=correo)
+        asunto = "¡Bienvenido a Deustronic Components!"  
+        mensaje = "Hola " + correo + " , gracias por confiar en nosotros, ¡Bienvenido!"  
+        desde = settings.EMAIL_HOST_USER  
+        para = [correo] 
+        send_mail(asunto, mensaje, desde, para)  
+        return JsonResponse(({'result':True}))
+    return JsonResponse(({'result':False}))
+    
 
 
 def ediccionCliente(request, cif):
@@ -225,7 +236,9 @@ def editarCliente(request):
     cif = request.POST["cif"]
     nombre = request.POST["nombre"]
     direccion = request.POST["direccion"]
+    cp = request.POST["cp"]
     ciudad = request.POST["ciudad"]
+    provincia = request.POST["provincia"]
     telefono = request.POST["telefono"]
     correo = request.POST["correo"]
     cliente = Cliente.objects.get(cif=cif)
@@ -242,6 +255,7 @@ def borrarCliente(request, cif):
     cliente = Cliente.objects.get(cif=cif)
     cliente.delete()
     return redirect("/clientes")
+
 
     # PEDIDOS
 
