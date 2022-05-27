@@ -210,13 +210,13 @@ def registrarCliente(request):
     if not Cliente.objects.filter(cif=cif).exists():
         nombre = request.POST["nombre"]
         direccion = request.POST["direccion"]
-        cp = request.POST["cp"]
+      #  cp = request.POST["cp"]
         ciudad = request.POST["ciudad"]
-        provincia = request.POST["provincia"] 
+       # provincia = request.POST["provincia"] 
         telefono = request.POST["telefono"]
         correo = request.POST["correo"]
-        Cliente.objects.create(cif=cif, nombre=nombre, direccion=direccion, cp=cp,
-                               ciudad=ciudad, provincia=provincia,telefono=telefono, correo=correo)
+        Cliente.objects.create(cif=cif, nombre=nombre, direccion=direccion,
+                               ciudad=ciudad, telefono=telefono, correo=correo)
         asunto = "¡Bienvenido a Deustronic Components!"  
         mensaje = "Hola " + correo + " , gracias por confiar en nosotros, ¡Bienvenido!"  
         desde = settings.EMAIL_HOST_USER  
