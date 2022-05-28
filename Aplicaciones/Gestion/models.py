@@ -37,9 +37,9 @@ class Cliente (models.Model):
     cif=models.CharField(primary_key=True, max_length=45)
     nombre=models.CharField(max_length=200)
     direccion=models.CharField(max_length=200)
-    cp=models.IntegerField()
+    cp=models.IntegerField(default=9200)
     ciudad=models.CharField(max_length=200)
-    provincia=models.CharField(max_length=200)
+    provincia=models.CharField(max_length=200, default="Vitoria")
     telefono=models.IntegerField()
     correo=models.EmailField()
 

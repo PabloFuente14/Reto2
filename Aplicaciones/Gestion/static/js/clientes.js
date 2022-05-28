@@ -58,25 +58,26 @@ function buscarCP(evento){
 
 function validarFormulario(evento) {
     evento.preventDefault();
-    var errores = false; 
-    var listaErrores = document.getElementById("errores"); 
-    while(listaErrores.firstChild) listaErrores.removeChild(listaErrores.firstChild); 
+    var errores = false; // Por si tenemos errores 
+    var listaErrores = document.getElementById("errores"); //Elemento donde publicaremos los errores
+    while(listaErrores.firstChild) listaErrores.removeChild(listaErrores.firstChild); //Cuando presionemos el botón borramos si hay errores para mostrar los nuevos
+
 
     
-    var abecedario = "abcdefghyjklmnopqrstuvwxyz"; 
-    var cif = document.getElementById('cif').value; 
-    cif = cif.toLowerCase(); 
+    var abecedario = "abcdefghyjklmnopqrstuvwxyz"; // Variable con todas las letras del Abecedario
+    var cif = document.getElementById('cif').value; // Elemtento cif
+    cif = cif.toLowerCase(); // Ponemos todas las letras en minúscula para comprobar
     
-    var ultima_posicion = cif.length - 1; 
+    var ultima_posicion = cif.length - 1; // Obtenemos la Última posición del cif
     
-    if((abecedario.indexOf(cif[0]) == -1 && abecedario.indexOf(cif[ultima_posicion]) == -1)){ 
+    if((abecedario.indexOf(cif[0]) == -1 && abecedario.indexOf(cif[ultima_posicion]) == -1)){ // Si la primera posicion y la ultima no es letra mostramos errores
         errores = true;
         var li = document.createElement('li');
         li.innerHTML="El CIF debe comenzar o terminar con una letra";
         listaErrores.appendChild(li);
     }
 
-	
+	// Si el cif tiene algún espacio mostramos error
     for(var i = 0; i < cif.length; i++){
         if(cif.charAt(i) == ' '){
             errores = true;
@@ -112,7 +113,9 @@ function validarFormulario(evento) {
 
     if(errores) return;
 
-	
+	document.querySelector("form").submit();
+
+	/*
 	var cif = document.getElementById('cif').value;
 	var nombre = document.getElementById('nombre').value;
 	var direccion = document.getElementById('direccion').value;
@@ -138,6 +141,7 @@ function validarFormulario(evento) {
 			}
 		}
 	}
+	*/
     
   }
 

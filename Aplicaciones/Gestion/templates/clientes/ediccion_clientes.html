@@ -36,25 +36,5 @@
     </div>
 </div>
 
-<script>
-    let btnAplicarCambios = document.querySelector("#btnAplicarCambios");
-    btnAplicarCambios.addEventListener("click", function(ev) {
-        ev.preventDefault();
-
-        //validaciones
-        let valido = false;
-        let telefono = document.querySelector("#telefono").value;
-        valido = telefono.length == 9;
-
-        //enviar
-        if (valido) {
-            document.querySelector("form").submit();
-        }
-        else {
-            alert("No has pasado la validacion del telefono de 9 de longitud");
-        }
-    });
-
-</script>
 
 {% endblock content %}

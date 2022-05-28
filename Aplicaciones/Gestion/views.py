@@ -217,13 +217,16 @@ def registrarCliente(request):
         correo = request.POST["correo"]
         Cliente.objects.create(cif=cif, nombre=nombre, direccion=direccion, cp=cp,
                                ciudad=ciudad, provincia=provincia,telefono=telefono, correo=correo)
-        asunto = "¡Bienvenido a Deustronic Components!"  
-        mensaje = "Hola " + correo + " , gracias por confiar en nosotros, ¡Bienvenido!"  
-        desde = settings.EMAIL_HOST_USER  
+        #Enviar email cuando se registra un cliente
+        asunto = "¡Bienvenido a Deustronic Components!"  #Asunto del email
+        mensaje = "Hola " + correo + " , gracias por confiar en nosotros, ¡Bienvenido!"  #Mensaje del email
+        desde = settings.EMAIL_HOST_USER   #Función para usar email
         para = [correo] 
         send_mail(asunto, mensaje, desde, para)  
-        return JsonResponse(({'result':True}))
-    return JsonResponse(({'result':False}))
+        return redirect('/clientes')
+    
+    # Redirigir a pagina de error
+    return redirect('/clientes')
     
 
 
