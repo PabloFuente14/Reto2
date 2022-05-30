@@ -119,33 +119,6 @@ function validarFormulario(evento) {
 
 	document.querySelector("form").submit();
 
-	/*
-	var cif = document.getElementById('cif').value;
-	var nombre = document.getElementById('nombre').value;
-	var direccion = document.getElementById('direccion').value;
-	var cp = document.getElementById('cp').value;
-	var ciudad = document.getElementById('ciudad').value;
-	var provincia = document.getElementById('provincia').value;
-	var telefono = document.getElementById('telefono').value;
-	var correo = document.getElementById('correo').value;
-	var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
-
-
-	const Http = new XMLHttpRequest();
-	const url = '/registrarCliente/';
-	Http.open("POST", url);
-	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	Http.send("cif="+cif+"&nombre="+nombre+"&direccion="+direccion+"&cp="+cp+"&ciudad="+ciudad+"&provincia="+provincia+"&telefono="+telefono+"&correo="+correo+"&csrfmiddlewaretoken="+csrfmiddlewaretoken+"");
-
-	Http.onreadystatechange=function(){
-		if(this.readyState==4 && this.status==200){ 
-			var json = JSON.parse(Http.responseText); 
-			if(json.result){ 
-				document.getElementById("tabla_clientes").insertRow(-1).innerHTML = '<td>'+cif+'</td><td>'+nombre+'</td><td>'+direccion+'</td><td>'+cp+'</td><td>'+ciudad+'</td><td>'+provincia+'</td><td>'+telefono+'</td><td>'+correo+'</td><td><a href="ediccionCliente/'+cif+'" class="btn btn-info">Editar</a></td><td><a href="borrarCliente/'+cif+'" class="btn btn-danger">Borrar</a></td>';
-			}
-		}
-	}
-	*/
 	
     
   }
