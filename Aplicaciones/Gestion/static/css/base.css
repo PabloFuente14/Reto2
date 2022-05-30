@@ -90,24 +90,26 @@ textarea {
 }
 
 /* practica 3 JS aumentar tamaño */
+
+
 .tamano0 {
-    font-size: 2px;
+    font-size: 0.8rem;
 }
 
 .tamano1 {
-    font-size: 6px;
+    font-size: 1rem;
 }
 
 .tamano2 {
-    font-size: 10px;
+    font-size: 1.2rem;
 }
 
 .tamano3 {
-    font-size: 13px;
+    font-size: 1.4rem;
 }
 
 .tamano4 {
-    font-size: 18px;
+    font-size: 1.6rem;
 }
 
 #aumentar {
@@ -137,6 +139,9 @@ textarea {
     padding: 16px 15px;
 }
 
+<<<<<<< HEAD
 #errores{
     color: red;
 }
+=======
+>>>>>>> 4ffc9fa39f1e232c9ff4dd1e63190e25f2e91611
