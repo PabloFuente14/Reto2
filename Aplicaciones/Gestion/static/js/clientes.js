@@ -73,7 +73,7 @@ function validarFormulario(evento) {
     
     var ultima_posicion = cif.length - 1; // Obtenemos la Última posición del cif
     
-    if((abecedario.indexOf(cif[0]) == -1 && abecedario.indexOf(cif[ultima_posicion]) == -1)){ // Si la primera posicion y la ultima no es letra mostramos errores
+    if((abecedario.indexOf(cif[0]) == -1 && abecedario.indexOf(cif[ultima_posicion]) == -1)){ // Si la primera posicion o la ultima no es letra mostramos errores
         errores = true;
         var li = document.createElement('li');
         li.innerHTML="El CIF debe comenzar o terminar con una letra";
@@ -90,7 +90,7 @@ function validarFormulario(evento) {
             break;
         }
     }
-    
+    //El nombre no puede contener números
     var nombre = document.getElementById('nombre').value;
     for(var i = 0; i < nombre.length; i++){
         if(Number.isInteger(parseInt(nombre[i]))){
@@ -102,6 +102,7 @@ function validarFormulario(evento) {
         }
     }
     
+	//la ciudad tampoco puede contener números
     var ciudad = document.getElementById('ciudad').value;
     for(var i = 0; i < ciudad.length; i++){
         if(Number.isInteger(parseInt(ciudad[i]))){
