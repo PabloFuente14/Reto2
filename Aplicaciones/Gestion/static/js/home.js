@@ -1,5 +1,6 @@
 // definimo las clases de css  que son tamaño
 var clases = ["tamano0" ,  "tamano1"  , "tamano2" , "tamano3" , "tamano4"];
+//var clases = ["display-1", "display-2", "display-3", "display-4"]
 
 // definimos en que posicion vamos a empezar
 var inicioClase = 2;

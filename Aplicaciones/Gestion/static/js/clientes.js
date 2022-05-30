@@ -2,6 +2,7 @@ document.getElementById("formulario_cliente").addEventListener('submit', validar
 document.getElementById("cp").addEventListener('blur', buscarCP);
 
 function buscarCP(evento){
+	//control código postal(cp): 3 tipos de errores
     var errores = false;
     var listaErrores = document.getElementById("errores");
     var error_cp_1 = !!document.getElementById("li_cp_1");
@@ -16,12 +17,12 @@ function buscarCP(evento){
         var elemento_error_cp_2 = document.getElementById("li_cp_2");
         listaErrores.removeChild(elemento_error_cp_2);
     }
-
+	//eliminamos errores existentes antes de dar al botón
     if(error_cp_existe){
         var elemento_error_cp_existe = document.getElementById("li_cp_existe");
         listaErrores.removeChild(elemento_error_cp_existe);
     }
-
+	// el cp sólo puede tener una longitud de 5 números
     var cp = document.getElementById('cp').value;
     if(cp.length != 5){
         errores = true;
@@ -30,6 +31,7 @@ function buscarCP(evento){
         li.innerHTML="El código postal debe de tener 5 números";
         listaErrores.appendChild(li);
     }
+	//el cp solo puede tener números
     for(var i = 0; i < cp.length; i++){
         if(!Number.isInteger(parseInt(cp[i]))){
             errores = true;
@@ -39,10 +41,11 @@ function buscarCP(evento){
             listaErrores.appendChild(li);
             break;
         }
+		//fin control cp
     }
 
     if(errores) return;
-
+	//comprobamos si existe o no existe nuestra provincia y autocompletamos la misma en funión de sus dos primeros dígitos del cp
     var provincia = provincias.filter(function (provincia) { return provincia.id == cp.substr(0,2) });
     if(provincia.length > 0){
         document.getElementById('provincia').value = provincia[0].nm;
@@ -142,10 +145,11 @@ function validarFormulario(evento) {
 		}
 	}
 	*/
+	
     
   }
 
-  
+//array provincias
 var provincias = [{
 	"id":"04",
 	"nm":"Almería"

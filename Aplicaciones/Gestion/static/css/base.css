@@ -136,3 +136,7 @@ textarea {
     background-color: rgba(65, 60, 218, 0.916);
     padding: 16px 15px;
 }
+
+#errores{
+    color: red;
+}
