@@ -30,19 +30,19 @@ function disminuir(){
 // le dicimos la clase previa y la que vamos a pasar
 function cambiarClases(previa, siguiente) {
     if (previa != siguiente) {
-        var elemento = document.querySelector('#titulo') // cogemos todos los elementos html
+        var elemento = document.querySelector('#titulo') // cogemos id titulo
         elemento.classList.remove(clases[previa]);//quitamos la clases previa
         elemento.classList.add(clases[siguiente]);//añadimos la clases siguiente
 
-        var elemento1 = document.querySelector('#navbarNav') // cogemos todos los elementos html
+        var elemento1 = document.querySelector('#navbarNav') // cogemos id navbarNav
         elemento1.classList.remove(clases[previa]);//quitamos la clases previa
         elemento1.classList.add(clases[siguiente]);//añadimos la clases 
 
-        var elemento2 = document.querySelector('#texto2') // cogemos todos los elementos html
+        var elemento2 = document.querySelector('#texto2') // cogemos id texto2
         elemento2.classList.remove(clases[previa]);//quitamos la clases previa
         elemento2.classList.add(clases[siguiente]);//añadimos la clases siguiente
 
-        var elemento3 = document.querySelector('#texto') // cogemos todos los elementos html
+        var elemento3 = document.querySelector('#texto') // cogemos id  texto
         elemento3.classList.remove(clases[previa]);//quitamos la clases previa
         elemento3.classList.add(clases[siguiente]);//añadimos la clases siguiente
     }
