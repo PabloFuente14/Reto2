@@ -105,7 +105,7 @@ def productos(request):
     else:
         productos = Producto.objects.all()
 
-    cantidad_por_pagina = 5
+    cantidad_por_pagina = 3
     # E3 - Paginador de productos, con 5 de maximo
     paginator = Paginator(productos, cantidad_por_pagina)
     # Obtenemos el número de página que queremos
