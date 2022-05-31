@@ -128,8 +128,8 @@ EMAIL_HOST="smtp.gmail.com"
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
 EMAIL_HOST_USER = "deustronicSL@gmail.com" 
-EMAIL_HOST_PASSWORD = "ykzsyvnyipbpmxjb"
-
+EMAIL_HOST_PASSWORD = "ykzsyvnyipbpmxjb" #Contraseña único uso
+#la contraseña de nuestro correo es : deusto1234
 
 # Añadido entrega3, type imagen-->guarda la imagen
 MEDIA_URL = 'media/' # carpeta donde van ha estar nuestros fotos
