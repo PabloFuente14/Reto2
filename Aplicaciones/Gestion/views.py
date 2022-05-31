@@ -250,6 +250,8 @@ def editarCliente(request):
     cliente.ciudad = ciudad
     cliente.telefono = telefono
     cliente.correo = correo
+    cliente.cp = cp
+    cliente.provincia = provincia
     cliente.save()
     return redirect("/clientes")
 
